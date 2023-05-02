@@ -1,0 +1,23 @@
+.App {
+  text-align: center;
+}
+
+html{
+  height: 100%;
+  width: 100%;
+  min-width: 850px;
+  min-height: 750px;
+}
+body{
+  display: flex;
+  height: 100% !important;
+  background-color: transparent !important;
+  min-width: 850px;
+  min-height: 750px;
+}
+
+#root{
+  height: 100%;
+  width:100%;
+  overflow:hidden;
+}
