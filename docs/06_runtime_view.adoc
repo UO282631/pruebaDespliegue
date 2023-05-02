@@ -1,0 +1,63 @@
+[[section-runtime-view]]
+== Vista en tiempo de ejecución
+
+=== Registro en aplicación
+
+[plantuml,"registro",png]
+----
+@startuml
+actor Bob
+participant Iomap
+database Pod
+Bob -> Iomap: Bob pide registrarse
+Iomap -> Pod: Redirecciona registro al proveedor del POD
+Bob <-- Pod: Pide datos del registro
+Bob -> Pod: Bob inserta sus datos
+Iomap <-- Pod: Validación
+Bob <-- Iomap: Confirmación registro
+----
+=== Inicio de sesión en aplicación
+
+[plantuml,"inicioSesion",png]
+----
+actor Bob
+participant Iomap
+database Pod
+Bob -> Iomap: Bob pide iniciar sesión
+Iomap -> Pod: Redirecciona al proveedor del POD
+Bob <-- Pod: Pide datos del inicio de sesión
+Bob -> Pod: Bob inserta sus datos
+Iomap <-- Pod: Validación
+Bob <-- Iomap: Confirmación inicio sesión
+----
+
+=== Busqueda de lugares mediante filtros (considerando que la sesión ya está iniciada)
+
+[plantuml,"filtro",png]
+----
+actor Bob
+participant Iomap
+database Pod
+database DataBase as "DataBase"
+Bob -> Iomap: Pulsa en filtro "Restaurantes"
+Bob -> Iomap: Hace click en "Aplicar filtros"
+Iomap-> DataBase: Pide la lista de restaurantes
+DataBase --> Iomap: Devuelve la lista de restaurantes
+Iomap-> Iomap: Muestra solo los restaurantes en el mapa
+----
+
+=== Añadir nuevo lugar al mapa (considerando que la sesión ya está iniciada)
+
+[plantuml,"añadirLugar",png]
+----
+actor Bob
+participant Iomap
+database Pod
+database DataBase as "DataBase"
+Bob -> Iomap: Pulsa en "Crear lugar"
+Iomap-> Iomap: Se abre un modal para "Crear lugar"
+Bob <-- Iomap: La aplicación pide los datos del lugar
+Bob -> Iomap: Bob inserta los datos
+Iomap --> DataBase: La aplicación añade el lugar a la base de datos
+Bob <-- Iomap: Confirmación de datos añadidos correctamente
+----
